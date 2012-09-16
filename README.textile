@@ -1,0 +1,3 @@
+h1. rah_beacon
+
+p. Create dynamic Textpattern tags, beacons, using Form partials.

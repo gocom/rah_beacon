@@ -35,8 +35,12 @@ class rah_beacon {
 		
 		foreach($rs as $a) {
 			$name = substr($a['name'], $prefix);
-			if(preg_match('/^[a-z]+[a-z0-9_]*$/', $name)) {
+			
+			if(preg_match('/^[a-z_][a-z0-9_]*$/', $name)) {
 				$beacon->$name();
+			}
+			else {
+				trace_add('[rah_beacon: '.$name.' skipped]');
 			}
 		}
 	}
@@ -78,6 +82,7 @@ class rah_beacons {
 	public function __call($name, $arguments) {
 	
 		if(function_exists($name)) {
+			trace_add('[rah_beacon: <txp:'.$name.' /> already reserved]');
 			return false;
 		}
 		

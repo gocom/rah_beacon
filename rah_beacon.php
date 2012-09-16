@@ -31,10 +31,13 @@ class rah_beacon {
 			);
 		
 		$beacon = new rah_beacons();
+		$prefix = strlen(__CLASS__)+1;
 		
 		foreach($rs as $a) {
-			$name = substr($a['name'], strlen(__CLASS__)+1);
-			$beacon->$name();
+			$name = substr($a['name'], $prefix);
+			if(preg_match('/^[a-z]+[a-z0-9_]*$/', $name)) {
+				$beacon->$name();
+			}
 		}
 	}
 	

@@ -81,6 +81,8 @@ class rah_beacons {
 			return false;
 		}
 		
+		trace_add('[rah_beacon: <txp:'.$name.' /> created]');
+		
 		eval(<<<EOF
 			function {$name}(\$atts, \$thing) {
 				return rah_beacon::operator(__FUNCTION__, \$atts, \$thing);

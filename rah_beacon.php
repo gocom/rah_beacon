@@ -23,25 +23,29 @@ class rah_beacon {
 	
 	public function __construct() {
 		
-		$rs = 
-			safe_rows(
+		$forms = 
+			safe_column(
 				'name',
 				'txp_form',
-				"name LIKE 'rah\_beacon\__%'"
+				'1=1'
 			);
 		
 		$beacon = new rah_beacons();
-		$prefix = strlen(__CLASS__)+1;
 		
-		foreach($rs as $a) {
-			$name = substr($a['name'], $prefix);
-			
-			if(preg_match('/^[a-z_][a-z0-9_]*$/', $name)) {
-				$beacon->$name();
-			}
-			else {
+		foreach($forms as $name) {
+			if(!preg_match('/^[a-z_][a-z0-9_]*$/', $name)) {
 				trace_add('[rah_beacon: '.$name.' skipped]');
+				continue;
 			}
+			
+			$token = token_get_all('<?php function '.$name.'(){} ?>');
+			
+			if(isset($token[3][0]) && $token[3][0] !== T_STRING) {
+				trace_add('[rah_beacon: '.$name.' skipped]');
+				continue;
+			}
+			
+			$beacon->$name();
 		}
 	}
 	
@@ -60,7 +64,7 @@ class rah_beacon {
 		}
 		
 		$variable = array_merge($original, $atts);
-		$out = output_form(array('form' => __CLASS__ . '_' . $alias), $thing);
+		$out = output_form(array('form' => $alias), $thing);
 		
 		foreach($atts as $name) {
 			unset($variable[$name]);

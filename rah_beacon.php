@@ -16,12 +16,20 @@
 	new rah_beacon();
 
 class rah_beacon {
-	
+
 	/**
 	 * Constructor
 	 */
 	
 	public function __construct() {
+		register_callback(array($this, 'light'), 'pretext');
+	}
+	
+	/**
+	 * Registers forms as tags
+	 */
+	
+	public function light() {
 		
 		$forms = 
 			safe_column(

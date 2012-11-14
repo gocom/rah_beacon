@@ -111,4 +111,22 @@ EOF
 	}
 }
 
+/**
+ * A tag for creating attribute defaults.
+ *
+ * @param array $atts Attributes
+ * @example
+ * &lt;txp:rah_beacon_atts variable1="value" variable2="value" [...] /&gt;
+ */
+
+	function rah_beacon_atts($atts)
+	{
+		global $variable;
+
+		foreach (lAtts($atts, $variable, false) as $name => $value)
+		{
+			$variable[$name] = $value;
+		}
+	}
+
 ?>

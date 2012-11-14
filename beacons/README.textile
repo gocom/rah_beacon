@@ -1,0 +1,12 @@
+h1. Example Beacons for rah_beacon
+
+p. This directory contains example beacons. All these beacons are just normal Textpattern form partials, those little templates and can be installed and handled like normal. Some of the partials may have some dependencies, require plugins or other beacons.
+
+h2. Video - video.misc.txp
+
+p. Renders a standard HTML5 video element with a list of source files. Takes a list of source media files wrapped in the tags, separated by line feeds.
+
+bc. <txp:video poster="path/to/poster.png">
+	/path/to/source.mp4
+	/path/to/source.ogv
+</txp:video>

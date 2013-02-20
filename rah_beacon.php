@@ -150,5 +150,3 @@ EOF
 			$variable[$name] = $value;
 		}
 	}
-
-?>

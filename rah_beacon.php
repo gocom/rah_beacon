@@ -36,12 +36,11 @@ class rah_beacon
 
 	public function light()
 	{	
-		$forms = 
-			safe_column(
-				'name',
-				'txp_form',
-				'1=1'
-			);
+		$forms = safe_column(
+			'name',
+			'txp_form',
+			'1 = 1'
+		);
 
 		$beacon = new rah_beacons();
 

@@ -93,7 +93,7 @@ class Rah_Beacon_Handler
 
         $original = (array) $variable;
 
-        list($atts, $thing) = array_merge($args, array(array(), null));
+        list($atts, $thing) = $args;
 
         if ($thing !== null)
         {

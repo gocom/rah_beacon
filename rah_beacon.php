@@ -12,8 +12,6 @@
  * http://www.gnu.org/licenses/gpl-2.0.html
  */
 
-    new rah_beacon();
-
 /**
  * The plugin class.
  */
@@ -130,6 +128,8 @@ EOF
         return true;
     }
 }
+
+new rah_beacon();
 
 /**
  * A tag for creating attribute defaults.

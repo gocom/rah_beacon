@@ -1,3 +1,7 @@
 h1. rah_beacon
 
 p. Create dynamic Textpattern tags, beacons, using Form partials.
+
+h2. Requirements
+
+* Textpattern 4.6.0-dev.

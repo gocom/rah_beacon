@@ -16,7 +16,7 @@
  * The plugin class.
  */
 
-class rah_beacon
+class Rah_Beacon
 {
     /**
      * Constructor.
@@ -24,6 +24,7 @@ class rah_beacon
 
     public function __construct()
     {
+        Textpattern_Tag_Registry::register(array($this, 'atts'), 'rah_beacon_atts');
         register_callback(array($this, 'light'), 'pretext');
     }
 
@@ -39,7 +40,7 @@ class rah_beacon
             '1 = 1'
         );
 
-        $beacon = new rah_beacons();
+        $beacon = new Rah_Beacon_Handler();
 
         foreach ($forms as $name)
         {
@@ -49,27 +50,50 @@ class rah_beacon
                 continue;
             }
 
-            $token = token_get_all('<?php function '.$name.'(){} ?>');
-
-            if (isset($token[3][0]) && $token[3][0] !== T_STRING)
-            {
-                trace_add('[rah_beacon: '.$name.' skipped]');
-                continue;
-            }
-
-            $beacon->$name();
+            Textpattern_Tag_Registry::register(array($beacon, $name), $name);
         }
     }
 
     /**
-     * Handles tag calls.
+     * A tag for creating attribute defaults.
+     *
+     * @param array $atts Attributes
+     * @example
+     * &lt;txp:rah_beacon_atts variable1="value" variable2="value" [...] /&gt;
      */
 
-    static public function operator($alias, $atts, $thing = null)
+    public function atts($atts)
+    {
+        global $variable;
+    
+        foreach (lAtts($atts, $variable, false) as $name => $value)
+        {
+            $variable[$name] = $value;
+        }
+    }
+}
+
+/**
+ * Creates lighthouse members.
+ */
+
+class Rah_Beacon_Handler
+{
+    /**
+     * Handles calling the tag template.
+     *
+     * @param  string $alias Tag name
+     * @param  string $args  Arguments
+     * @return string
+     */
+
+    public function __call($alias, $args)
     {
         global $variable;
 
         $original = (array) $variable;
+
+        list($atts, $thing) = array_merge($args, array(array(), null));
 
         if ($thing !== null)
         {
@@ -94,57 +118,4 @@ class rah_beacon
     }
 }
 
-/**
- * Creates lighthouse members
- */
-
-class rah_beacons
-{
-    /**
-     * Registers a new tag handler function.
-     *
-     * @param  string $name      Tag name
-     * @param  string $arguments Not used
-     * @return bool   FALSE on error
-     */
-
-    public function __call($name, $arguments)
-    {
-        if (function_exists($name))
-        {
-            trace_add('[rah_beacon: <txp:'.$name.' /> already reserved]');
-            return false;
-        }
-
-        trace_add('[rah_beacon: <txp:'.$name.' /> created]');
-
-        eval(<<<EOF
-            function {$name}(\$atts, \$thing) {
-                return rah_beacon::operator(__FUNCTION__, \$atts, \$thing);
-            }
-EOF
-        );
-
-        return true;
-    }
-}
-
-new rah_beacon();
-
-/**
- * A tag for creating attribute defaults.
- *
- * @param array $atts Attributes
- * @example
- * &lt;txp:rah_beacon_atts variable1="value" variable2="value" [...] /&gt;
- */
-
-    function rah_beacon_atts($atts)
-    {
-        global $variable;
-
-        foreach (lAtts($atts, $variable, false) as $name => $value)
-        {
-            $variable[$name] = $value;
-        }
-    }
+new Rah_Beacon();

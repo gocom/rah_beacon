@@ -1,11 +1,11 @@
 {
-	"name"        : "rah_beacon",
-	"description" : "Create alias tags using form partials",
-	"version"     : "0.1",
-	"type"        : 0,
-	"author"      : "Jukka Svahn",
-	"author_uri"  : "http://rahforum.biz",
-	"order"       : 5,
-	"flags"       : 0,
-	"help"        : {"file" : ["./README.textile"]}
+    "name"        : "rah_beacon",
+    "description" : "Create alias tags using form partials",
+    "version"     : "0.1",
+    "type"        : 0,
+    "author"      : "Jukka Svahn",
+    "author_uri"  : "http://rahforum.biz",
+    "order"       : 5,
+    "flags"       : 0,
+    "help"        : {"file" : ["./README.textile"]}
 }

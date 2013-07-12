@@ -1,7 +1,7 @@
 {
     "name": "rah/rah_beacon",
     "description": "Create dynamic alias templates tags from Textpattern CMS' form partials",
-    "keywords": ["textpattern", "plugin", "flat", "template"],
+    "keywords": ["textpattern", "plugin", "template", "tag"],
     "homepage": "https://github.com/gocom/rah_beacon",
     "license": "GPL-2.0",
     "type": "textpattern-plugin",

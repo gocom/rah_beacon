@@ -12,7 +12,7 @@
 
 <video <txp:variable name="poster" /> controls>
     <txp:php>
-        foreach (do_list(yield(), n) as $source)
+        foreach (do_list(parse('<txp:yield />'), n) as $source)
         {
             echo '<source src="'.txpspecialchars($source).'" />'.n;
         }

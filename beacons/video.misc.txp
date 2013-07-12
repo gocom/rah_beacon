@@ -1,20 +1,20 @@
 <txp:if_variable name="poster"> 
-	<txp:variable 
-		name="poster" 
-		value='poster="<txp:variable name="poster" />"'
-	/>
+    <txp:variable 
+        name="poster" 
+        value='poster="<txp:variable name="poster" />"'
+    />
 <txp:else />
-	<txp:variable 
-		name="poster" 
-		value=""
-	/>
+    <txp:variable 
+        name="poster" 
+        value=""
+    />
 </txp:if_variable>
 
 <video <txp:variable name="poster" /> controls>
-	<txp:php>
-		foreach (do_list(yield(), n) as $source)
-		{
-			echo '<source src="'.txpspecialchars($source).'" />'.n;
-		}
-	</txp:php>
+    <txp:php>
+        foreach (do_list(yield(), n) as $source)
+        {
+            echo '<source src="'.txpspecialchars($source).'" />'.n;
+        }
+    </txp:php>
 </video>

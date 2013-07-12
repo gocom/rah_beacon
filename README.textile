@@ -1,7 +1,15 @@
 h1. rah_beacon
 
-p. Create dynamic Textpattern tags, beacons, using Form partials.
+p. A "Textpattern CMS":http://textpattern,com plugin for creating dynamic Textpattern tags, beacons, using Form partials. This plugin allows calling forms, by their name, as tags.
 
 h2. Requirements
 
+p. Rah_beacon's at minimum requires:
+
 * Textpattern 4.6.0-dev.
+
+h2. Installing
+
+p. Using "Composer":http://getcomposer.org:
+
+bc. $ composer.phar require rah/rah_beacon

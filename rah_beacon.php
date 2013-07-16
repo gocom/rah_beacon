@@ -44,7 +44,7 @@ class Rah_Beacon
 
         foreach ($forms as $name)
         {
-            if (!preg_match('/^[a-z_][a-z0-9_]*$/', $name))
+            if (!preg_match('/^[a-z][a-z0-9_]*$/', $name))
             {
                 trace_add('[rah_beacon: '.$name.' skipped]');
                 continue;

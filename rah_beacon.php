@@ -104,7 +104,7 @@ class Rah_Beacon_Handler
         $variable = array_merge($original, $atts);
         $out = output_form(array('form' => $alias), $thing);
 
-        foreach ($atts as $name)
+        foreach ($atts as $name => $value)
         {
             unset($variable[$name]);
 

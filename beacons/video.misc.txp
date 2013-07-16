@@ -1,20 +1,12 @@
-<txp:if_variable name="poster"> 
-    <txp:variable 
-        name="poster" 
-        value='poster="<txp:variable name="poster" />"'
-    />
-<txp:else />
-    <txp:variable 
-        name="poster" 
-        value=""
-    />
-</txp:if_variable>
+<txp:rah_beacon_atts poster="" controls=" controls" />
 
-<video <txp:variable name="poster" /> controls>
-    <txp:php>
-        foreach (do_list(parse('<txp:yield />'), n) as $source)
-        {
-            echo '<source src="'.txpspecialchars($source).'" />'.n;
-        }
-    </txp:php>
-</video>
+<div class="player">
+    <video poster="<txp:variable name="poster" />" <txp:variable name="controls" />>
+        <txp:php>
+            foreach (do_list(parse('<txp:yield />'), n) as $source)
+            {
+                echo '<source type="video/'.pathinfo($source, PATHINFO_EXTENSION).'" src="'.txpspecialchars($source).'" />'.n;
+            }
+        </txp:php>
+    </video>
+</div>

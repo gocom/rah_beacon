@@ -1,7 +1,7 @@
 <txp:rah_beacon_atts poster="" controls=" controls" />
 
 <div class="player">
-    <video poster="<txp:variable name="poster" />" <txp:variable name="controls" />>
+    <video poster="<txp:variable name="poster" />"<txp:variable name="controls" />>
         <txp:php>
             $types = array(
                 'ogv'  => 'video/ogg',

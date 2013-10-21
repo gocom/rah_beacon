@@ -24,7 +24,7 @@ class Rah_Beacon
 
     public function __construct()
     {
-        Textpattern_Tag_Registry::register(array($this, 'atts'), 'rah_beacon_atts');
+        Txp::get('TagRegistry')->register(array($this, 'atts'), 'rah_beacon_atts');
         register_callback(array($this, 'light'), 'pretext');
     }
 
@@ -50,7 +50,7 @@ class Rah_Beacon
                 continue;
             }
 
-            Textpattern_Tag_Registry::register(array($beacon, $name), $name);
+            Txp::get('TagRegistry')->register(array($beacon, $name), $name);
         }
     }
 

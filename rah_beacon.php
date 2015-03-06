@@ -50,7 +50,7 @@ class Rah_Beacon
                 continue;
             }
 
-            Txp::get('TagRegistry')->register(array($beacon, $name), $name);
+            Txp::get('Textpattern_Tag_Registry')->register(array($beacon, $name), $name);
         }
     }
 

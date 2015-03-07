@@ -24,7 +24,7 @@ class Rah_Beacon
 
     public function __construct()
     {
-        Txp::get('TagRegistry')->register(array($this, 'atts'), 'rah_beacon_atts');
+        Txp::get('Textpattern_Tag_Registry')->register(array($this, 'atts'), 'rah_beacon_atts');
         register_callback(array($this, 'light'), 'pretext');
     }
 

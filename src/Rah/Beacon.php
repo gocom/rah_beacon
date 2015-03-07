@@ -42,7 +42,7 @@ class Rah_Beacon
      */
 
     public function light()
-    {    
+    {
         $forms = safe_column(
             'name',
             'txp_form',

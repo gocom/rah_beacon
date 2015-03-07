@@ -9,12 +9,10 @@
                 'webm' => 'video/webm',
             );
 
-            foreach (do_list(parse('<txp:yield />'), n) as $source)
-            {
+            foreach (do_list(parse('<txp:yield />'), n) as $source) {
                 $ext = pathinfo($source, PATHINFO_EXTENSION);
 
-                if (isset($types[$ext]))
-                {
+                if (isset($types[$ext])) {
                     echo '<source type="'.$types[$ext].'" src="'.txpspecialchars($source).'" />'.n;
                 }
             }

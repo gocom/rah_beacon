@@ -42,10 +42,8 @@ class Rah_Beacon
 
         $beacon = new Rah_Beacon_Handler();
 
-        foreach ($forms as $name)
-        {
-            if (!preg_match('/^[a-z][a-z0-9_]*$/', $name))
-            {
+        foreach ($forms as $name) {
+            if (!preg_match('/^[a-z][a-z0-9_]*$/', $name)) {
                 trace_add('[rah_beacon: '.$name.' skipped]');
                 continue;
             }
@@ -66,8 +64,7 @@ class Rah_Beacon
     {
         global $variable;
     
-        foreach (lAtts($atts, $variable, false) as $name => $value)
-        {
+        foreach (lAtts($atts, $variable, false) as $name => $value) {
             $variable[$name] = $value;
         }
     }
@@ -95,8 +92,7 @@ class Rah_Beacon_Handler
 
         list($atts, $thing) = $args;
 
-        if ($thing !== null)
-        {
+        if ($thing !== null) {
             $atts['thing'] = $atts['true'] = parse(EvalElse($thing, true));
             $atts['false'] = parse(EvalElse($thing, false));
         }
@@ -104,12 +100,10 @@ class Rah_Beacon_Handler
         $variable = array_merge($original, $atts);
         $out = output_form(array('form' => $alias), $thing);
 
-        foreach ($atts as $name => $value)
-        {
+        foreach ($atts as $name => $value) {
             unset($variable[$name]);
 
-            if (isset($original[$name]))
-            {
+            if (isset($original[$name])) {
                 $variable[$name] = $original[$name];
             }
         }

@@ -7,6 +7,6 @@ h2. Video - video.misc.txp
 p. Renders a standard HTML5 video element with a list of source files. Takes a list of source media files wrapped in the tags, separated by line feeds.
 
 bc. <txp:video poster="path/to/poster.png">
-	/path/to/source.mp4
-	/path/to/source.ogv
+    /path/to/source.mp4
+    /path/to/source.ogv
 </txp:video>

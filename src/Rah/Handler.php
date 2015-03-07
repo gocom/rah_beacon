@@ -22,75 +22,15 @@
  */
 
 /**
- * The plugin class.
- */
-
-class Rah_Beacon
-{
-    /**
-     * Constructor.
-     */
-
-    public function __construct()
-    {
-        Txp::get('Textpattern_Tag_Registry')->register(array($this, 'atts'), 'rah_beacon_atts');
-        register_callback(array($this, 'light'), 'pretext');
-    }
-
-    /**
-     * Registers forms as tags.
-     */
-
-    public function light()
-    {    
-        $forms = safe_column(
-            'name',
-            'txp_form',
-            '1 = 1'
-        );
-
-        $beacon = new Rah_Beacon_Handler();
-
-        foreach ($forms as $name) {
-            if (!preg_match('/^[a-z][a-z0-9_]*$/', $name)) {
-                trace_add('[rah_beacon: '.$name.' skipped]');
-                continue;
-            }
-
-            Txp::get('Textpattern_Tag_Registry')->register(array($beacon, $name), $name);
-        }
-    }
-
-    /**
-     * A tag for assigning attribute defaults for tags.
-     *
-     * This tag should be called within the Form partial if
-     * it requires defaults for it's variables.
-     *
-     * <code>
-     * <txp:rah_beacon_atts color="blue" size="small" />
-     * </code>
-     *
-     * The above would create a variable named "color" and "size"
-     * with values "blue" and "small" if one of them isn't
-     * specified as attributes in the tag calling the form.
-     *
-     * @param  array $atts Attributes
-     * @return null
-     */
-
-    public function atts($atts)
-    {
-        global $variable;
-    
-        foreach (lAtts($atts, $variable, false) as $name => $value) {
-            $variable[$name] = $value;
-        }
-    }
-}
-
-/**
- * Creates lighthouse members.
+ * Redirects tag calls to the proper Form partial.
+ *
+ * <code>
+ * $handler = new Rah_Beacon_Handler();
+ * $handler->formpartialname(array(
+ *     'variable1' => 'value',
+ *     'variable2' => 'value',
+ * ));
+ * </code>
  */
 
 class Rah_Beacon_Handler
@@ -130,5 +70,3 @@ class Rah_Beacon_Handler
         return $out;
     }
 }
-
-new Rah_Beacon();

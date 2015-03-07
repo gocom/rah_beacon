@@ -7,5 +7,9 @@
     "author_uri": "https://github.com/gocom/rah_beacon",
     "order": 5,
     "flags": 0,
-    "help": {"file" : ["./README.textile"]}
+    "help": {"file" : ["./README.textile"]},
+    "code": {"file" : [
+        "./src/Rah/Beacon.php",
+        "./src/Rah/Handler.php"
+    ]}
 }

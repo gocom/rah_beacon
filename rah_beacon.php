@@ -53,11 +53,21 @@ class Rah_Beacon
     }
 
     /**
-     * A tag for creating attribute defaults.
+     * A tag for assigning attribute defaults for tags.
      *
-     * @param array $atts Attributes
-     * @example
-     * &lt;txp:rah_beacon_atts variable1="value" variable2="value" [...] /&gt;
+     * This tag should be called within the Form partial if
+     * it requires defaults for it's variables.
+     *
+     * <code>
+     * <txp:rah_beacon_atts color="blue" size="small" />
+     * </code>
+     *
+     * The above would create a variable named "color" and "size"
+     * with values "blue" and "small" if one of them isn't
+     * specified as attributes in the tag calling the form.
+     *
+     * @param  array $atts Attributes
+     * @return null
      */
 
     public function atts($atts)

@@ -1,7 +1,7 @@
 <?php
 
 /*
- * rah_beacon - Flat templates for Textpattern CMS
+ * rah_beacon - Create alias tags using form partials in Textpattern CMS
  * https://github.com/gocom/rah_beacon
  *
  * Copyright (C) 2015 Jukka Svahn

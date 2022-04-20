@@ -10,6 +10,7 @@
     "help": {"file" : ["./README.textile"]},
     "code": {"file" : [
         "./src/Rah/Beacon.php",
-        "./src/Rah/Handler.php"
+        "./src/Rah/Handler.php",
+        "./src/Index.php"
     ]}
 }

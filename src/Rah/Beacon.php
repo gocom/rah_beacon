@@ -24,24 +24,34 @@
 /**
  * The plugin class.
  */
-
 class Rah_Beacon
 {
+    const TAG_PATTERN = '/^[a-z][a-z0-9_]*$/';
+
+    /**
+     * @var \Textpattern\Tag\Registry
+     */
+    private $registry;
+
     /**
      * Constructor.
      */
-
     public function __construct()
     {
-        Txp::get('Textpattern_Tag_Registry')->register(array($this, 'atts'), 'rah_beacon_atts');
-        register_callback(array($this, 'light'), 'pretext');
+        $this->registry = Txp::get('Textpattern\Tag\Registry');
+
+        $this->registry->register(
+            [$this, 'atts'],
+            'rah_beacon_atts'
+        );
+
+        register_callback([$this, 'registerFormsAsTags'], 'pretext');
     }
 
     /**
      * Registers forms as tags.
      */
-
-    public function light()
+    public function registerFormsAsTags()
     {
         $forms = safe_column(
             'name',
@@ -49,15 +59,23 @@ class Rah_Beacon
             '1 = 1'
         );
 
-        $beacon = new Rah_Beacon_Handler();
+        $handler = new Rah_Beacon_Handler();
 
         foreach ($forms as $name) {
-            if (!preg_match('/^[a-z][a-z0-9_]*$/', $name)) {
-                trace_add('[rah_beacon: '.$name.' skipped]');
+            if (!preg_match(self::TAG_PATTERN, $name)) {
+                trace_add("[rah_beacon: $name skipped, naming is not a valid tag]");
                 continue;
             }
 
-            Txp::get('Textpattern_Tag_Registry')->register(array($beacon, $name), $name);
+            if ($this->registry->isRegistered($name)) {
+                trace_add("[rah_beacon: $name skipped, tag with same name already exists]");
+                continue;
+            }
+
+            $this->registry->register(
+                [$handler, $name],
+                $name
+            );
         }
     }
 
@@ -67,26 +85,24 @@ class Rah_Beacon
      * This tag should be called within the Form partial if
      * it requires defaults for it's variables.
      *
-     * <code>
+     * ```
      * <txp:rah_beacon_atts color="blue" size="small" />
-     * </code>
+     * ```
      *
      * The above would create a variable named "color" and "size"
      * with values "blue" and "small" if one of them isn't
      * specified as attributes in the tag calling the form.
      *
      * @param  array $atts Attributes
-     * @return null
+     *
+     * @return void
      */
-
     public function atts($atts)
     {
         global $variable;
-    
+
         foreach (lAtts($atts, $variable, false) as $name => $value) {
             $variable[$name] = $value;
         }
     }
 }
-
-new Rah_Beacon();

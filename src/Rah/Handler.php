@@ -24,25 +24,23 @@
 /**
  * Redirects tag calls to the proper Form partial.
  *
- * <code>
+ * ```
  * $handler = new Rah_Beacon_Handler();
  * $handler->formpartialname(array(
  *     'variable1' => 'value',
  *     'variable2' => 'value',
  * ));
- * </code>
+ * ```
  */
-
 class Rah_Beacon_Handler
 {
     /**
-     * Handles calling the tag template.
+     * Handles routing the called template tag to the form.
      *
-     * @param  string $alias Tag name
-     * @param  string $args  Arguments
+     * @param string $alias Tag name
+     * @param string $args Arguments
      * @return string
      */
-
     public function __call($alias, $args)
     {
         global $variable;

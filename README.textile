@@ -1,57 +1,21 @@
 h1. rah_beacon
 
-A "Textpattern CMS":http://textpattern,com plugin for creating dynamic Textpattern tags, beacons, using Form partials. This plugin allows calling forms, by their name, as tags.
+Create dynamic alias templates tags from Textpattern CMS' form partials.
 
-h2. Requirements
+h2. Discontinued
 
-p. Rah_beacon's at minimum requires:
+This is now part of "Textpattern CMS":https://textpattern.com core as of version 4.7.0. Templates can now be called using short tags without any extra plugins. For more information, see "here":https://docs.textpattern.com/tags/output_form.
 
-Textpattern 4.6.0-dev.
+This plugin, and repository, never had a stable release, so this is no effectively discontinued. This repository is kept around so that existing installs that may be using the Composer package do not break and for history reasons.
 
-h2. Installing
+h2. Install
 
-Using "Composer":http://getcomposer.org:
+Using "Composer":https://getcomposer.org:
 
 bc. $ composer require rah/rah_beacon:*@dev
-
-h2. Basics
-
-Rah_beacon allows you too call Textpattern's normal "Form partials":http://www.textpattern.net/wiki/index.php?title=Forms by their name as tags, making your templates cleaner and also adding the ability to pass "variables":http://www.textpattern.net/wiki/index.php?title=variable via attributes to forms.
-
-Let's say you have form named @header@, generating a standard header section your website. Normally calling adding this form to your pages would involve using the "output_form":http://www.textpattern.net/wiki/index.php?title=output_form tag:
-
-bc. <txp:output_form form="header" />
-
-This isn't very neat looking and neither allows you to pass attributes to the form; you could set variables before calling the form, but that requires multiple lines of code and those variables are not private to the form will leak and conflict with rest of the page. Add in rah_beacon and that same call becomes:
-
-bc. <txp:header />
-
-And you can set any number of attributes which then can be accessed within the form as variables:
-
-bc. <txp:header title="My custom page title" class="custom-class" />
-
-h3. Attributes and form-specific variables
-
-All dynamic Textpattern tags can contain any number of attributes that will create matching variables that are private to the called form. Take a call like:
-
-bc. <txp:copyright holder="John Doe" year="2012" />
-
-Within the @copyright@ form the attributes can be accessed with the "variable":http://www.textpattern.net/wiki/index.php?title=variable tag:
-
-bc. <p class="copyright">&copy; <txp:variable name="year" /> <txp:variable name="holder" /></p>
-
-In case the attributes are optional, defaults can be created by placing a @rah_beacon_atts@ tag within the form partial:
-
-bc.. <txp:rah_beacon_atts holder='<txp:site_name />' year='<txp:php> echo date("y"); </txp:php>' />
-
-<p class="copyright">&copy; <txp:variable name="year" /> <txp:variable name="holder" /></p>
-
-p. And now any of the attributes can be omitted and the default will be used instead:
-
-bc. <txp:copyright holder="John Doe" />
 
 h2. Changelog
 
 h3. Version 0.1.0 - upcoming
 
-* Initial release.
+* First release.

@@ -34,5 +34,6 @@
         "allow-plugins": {
             "textpattern/installer": true
         }
-    }
+    },
+    "abandoned": true
 }
